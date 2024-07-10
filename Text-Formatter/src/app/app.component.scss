@@ -1,0 +1,18 @@
+.container-fluid {
+    background-color: rgb(207, 207, 243); 
+}
+  
+.nav-link {
+    color: #000; 
+    transition: color 0.3s ease; 
+    font-weight: bold;
+}
+  
+.nav-link:hover,
+.nav-link.active-link {
+    color: rgb(61, 101, 234) !important; 
+}
+
+.nav-link.active-link {
+    font-weight: bold;
+}
