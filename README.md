@@ -1,3 +1,3 @@
 #Output
 
-![Screenshot (63)](https://github.com/Swapnil2105/Text-Formatter/assets/59745802/a31ee4b0-f9dd-4477-be4b-a0d739fae078)
+![Screenshot (64)](https://github.com/Swapnil2105/Text-Formatter/assets/59745802/64dbe53b-17b2-4460-af83-e5d01d932876)
