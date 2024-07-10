@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormattersComponent } from './formatters.component';
+import { FormatterComponent } from './formatter.component';
 
-describe('FormattersComponent', () => {
-  let component: FormattersComponent;
-  let fixture: ComponentFixture<FormattersComponent>;
+describe('FormatterComponent', () => {
+  let component: FormatterComponent;
+  let fixture: ComponentFixture<FormatterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormattersComponent ]
+      declarations: [ FormatterComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormattersComponent);
+    fixture = TestBed.createComponent(FormatterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
