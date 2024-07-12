@@ -1,6 +1,5 @@
 <div class="container">
   <div class="row">
-    <!-- Left side -->
     <div class="col-md-5">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -21,16 +20,32 @@
       </div>
 
       <div class="sidebar-buttons">
-        <button type="button" class="btn btn-light" (click)="fetchUserInfo()">
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="fetchData('comments')"
+        >
           Comments
         </button>
-        <button type="button" class="btn btn-light" (click)="fetchAlbums()">
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="fetchData('albums')"
+        >
           Albums
         </button>
-        <button type="button" class="btn btn-light" (click)="fetchPhotos()">
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="fetchData('photos')"
+        >
           Photos
         </button>
-        <button type="button" class="btn btn-light" (click)="fetchTodos()">
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="fetchData('todos')"
+        >
           Todo
         </button>
       </div>
@@ -88,7 +103,6 @@
         {{ errorMessage }}
       </div>
       <div class="response-data p-3 overflow-auto">
-        <!-- Display JSON data if it's not an array of photos -->
         <h4 style="font-weight: bold; text-decoration: underline">
           Response Data :-
         </h4>
@@ -104,7 +118,6 @@
           </ng-container>
         </ng-container>
 
-        <!-- Template to display photos -->
         <ng-template #photoTemplate>
           <div class="photo-grid">
             <div *ngFor="let photo of responseData">
@@ -118,7 +131,6 @@
           </div>
         </ng-template>
 
-        <!-- Recursive template -->
         <ng-template #recursiveTemplate let-key let-value="value">
           <div *ngIf="!isObject(value); else nestedObjectTemplate">
             <p class="overflow-auto">

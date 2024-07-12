@@ -19,23 +19,32 @@
 .sidebar-buttons {
     margin-top: 50px;
     margin-left: 20px;
+
+    button {
+        margin-bottom: 10px;
+        width: 60%;
+        background-color: white;
+        font-weight: bold;
+    }
 }
 
-.sidebar-buttons button {
-    margin-bottom: 10px;
-    width: 60%;
-    background-color: white;
-    font-weight: bold;
-}
+// .sidebar-buttons button {
+//     margin-bottom: 10px;
+//     width: 60%;
+//     background-color: white;
+//     font-weight: bold;
+// }
 
-.buttons .d-flex {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-around;
-}
+.buttons {
+    .d-flex {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
 
-.buttons button {
-    font-weight: bold;
+        .buttons button {
+            font-weight: bold;
+        }
+    }
 }
 
 .overflow-auto {
@@ -47,9 +56,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+
+    img {
+        max-width: 100px;
+        max-height: 100px;
+    }
 }
 
-.photo-grid img {
-    max-width: 100px;
-    max-height: 100px;
-}
+// .photo-grid img {
+    
+// }
