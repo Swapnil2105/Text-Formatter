@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="row">
+    <!-- Left side -->
+    <div class="col-md-5">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span
+            class="input-group-text"
+            id="basic-addon1"
+            style="font-weight: bold"
+            >User Id :-</span
+          >
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="userId"
+          aria-label="UserId"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+      <div class="sidebar-buttons">
+        <button type="button" class="btn btn-light" (click)="fetchUserInfo()">
+          Comments
+        </button>
+        <button type="button" class="btn btn-light" (click)="fetchAlbums()">
+          Albums
+        </button>
+        <button type="button" class="btn btn-light" (click)="fetchPhotos()">
+          Photos
+        </button>
+        <button type="button" class="btn btn-light" (click)="fetchTodos()">
+          Todo
+        </button>
+      </div>
+
+      <div class="buttons mt-3">
+        <div class="d-flex">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="createUser()"
+          >
+            Create
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="deleteUser()"
+          >
+            Delete
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="updateUser()"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+
+      <div class="input-group mt-3">
+        <div class="input-group-prepend">
+          <span
+            class="input-group-text"
+            id="basic-addon2"
+            style="font-weight: bold"
+            >Input Body :-</span
+          >
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="inputBody"
+          aria-label="InputBody"
+          aria-describedby="basic-addon2"
+        />
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="error-msg p-3 mb-3" *ngIf="errorMessage">
+        <h5 style="font-weight: bold; text-decoration: underline">
+          Error Msg :-
+        </h5>
+        {{ errorMessage }}
+      </div>
+      <div class="response-data p-3 overflow-auto">
+        <!-- Display JSON data if it's not an array of photos -->
+        <h4 style="font-weight: bold; text-decoration: underline">
+          Response Data :-
+        </h4>
+        <ng-container *ngIf="!isPhotosResponse; else photoTemplate">
+          <ng-container *ngFor="let key of getKeys(responseData)">
+            <ng-container
+              *ngTemplateOutlet="
+                recursiveTemplate;
+                context: { $implicit: key, value: responseData[key] }
+              "
+            ></ng-container>
+            <hr />
+          </ng-container>
+        </ng-container>
+
+        <!-- Template to display photos -->
+        <ng-template #photoTemplate>
+          <div class="photo-grid">
+            <div *ngFor="let photo of responseData">
+              <img
+                [src]="photo.url"
+                [alt]="photo.title"
+                class="img-thumbnail"
+              />
+              <p>{{ photo.title }}</p>
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- Recursive template -->
+        <ng-template #recursiveTemplate let-key let-value="value">
+          <div *ngIf="!isObject(value); else nestedObjectTemplate">
+            <p class="overflow-auto">
+              <strong>{{ key }} :</strong> {{ value }}
+            </p>
+          </div>
+          <ng-template #nestedObjectTemplate>
+            <div>
+              <strong>{{ key }} :</strong>
+              <ng-container *ngFor="let nestedKey of getKeys(value)">
+                <ng-container
+                  *ngTemplateOutlet="
+                    recursiveTemplate;
+                    context: { $implicit: nestedKey, value: value[nestedKey] }
+                  "
+                ></ng-container>
+              </ng-container>
+            </div>
+          </ng-template>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
