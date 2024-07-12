@@ -1,0 +1,68 @@
+.container {
+    background-color: lightgrey;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.error-msg {
+    background-color: white;
+    height: 100px;
+    font-weight: bold;
+}
+
+.response-data {
+    background-color: #f8d7da;
+    height: 300px;
+    font-weight: bold;
+}
+
+.sidebar-buttons {
+    margin-top: 50px;
+    margin-left: 20px;
+
+    button {
+        margin-bottom: 10px;
+        width: 60%;
+        background-color: white;
+        font-weight: bold;
+    }
+}
+
+// .sidebar-buttons button {
+//     margin-bottom: 10px;
+//     width: 60%;
+//     background-color: white;
+//     font-weight: bold;
+// }
+
+.buttons {
+    .d-flex {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
+
+        .buttons button {
+            font-weight: bold;
+        }
+    }
+}
+
+.overflow-auto {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}
+
+// .photo-grid img {
+    
+// }
