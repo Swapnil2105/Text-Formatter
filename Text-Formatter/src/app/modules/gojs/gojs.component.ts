@@ -23,7 +23,7 @@ export class GojsComponent implements OnInit {
         layout: $(go.LayeredDigraphLayout, { direction: 90, layerSpacing: 40 })
       });
 
-    // define a simple Node template
+    // Define Node templates
     myDiagram.nodeTemplateMap.add('Rectangle',
       $(go.Node, 'Auto',
         $(go.Shape, 'Rectangle', { strokeWidth: 1, fill: 'white' },
@@ -60,19 +60,49 @@ export class GojsComponent implements OnInit {
       )
     );
 
-    myDiagram.linkTemplate =
+    // Define different link templates
+    myDiagram.linkTemplateMap.add('curvedLink',
       $(go.Link,
-        // {
-        //   curve: go.Link.Bezier,
-        //   curviness: 20, // Adjust curviness for better fitting links
-        //   routing: go.Link.AvoidsNodes
-        // },
+        {
+          curve: go.Link.Bezier,
+          curviness: 15,  // Curved links
+          routing: go.Link.AvoidsNodes
+        },
         $(go.Shape, { strokeWidth: 2 },
           new go.Binding('stroke', 'color')),
         $(go.Shape, { toArrow: 'Standard', stroke: null },
           new go.Binding('fill', 'color'))
-      );
+      )
+    );
 
+    myDiagram.linkTemplateMap.add('straightLink',
+      $(go.Link,
+        {
+          curve: go.Link.None,  // Straight links
+          routing: go.Link.AvoidsNodes
+        },
+        $(go.Shape, { strokeWidth: 2 },
+          new go.Binding('stroke', 'color')),
+        $(go.Shape, { toArrow: 'Standard', stroke: null },
+          new go.Binding('fill', 'color'))
+      )
+    );
+
+    myDiagram.linkTemplateMap.add('orthogonalLink',
+      $(go.Link,
+        {
+          curve: go.Link.None,  // Orthogonal links
+          routing: go.Link.AvoidsNodes,
+          corner: 1  // Use corner to make orthogonal turns
+        },
+        $(go.Shape, { strokeWidth: 2 },
+          new go.Binding('stroke', 'color')),
+        $(go.Shape, { toArrow: 'Standard', stroke: null },
+          new go.Binding('fill', 'color'))
+      )
+    );
+
+    // Define the model with link types
     myDiagram.model = new go.GraphLinksModel(
       [
         { key: 'Rubiscape', color: '#FF69B4', category: 'Rectangle' },
@@ -86,15 +116,16 @@ export class GojsComponent implements OnInit {
         { key: 'Reusable Code', color: '#FFFFFF', category: 'Diamond' }
       ],
       [
-        { from: 'Rubiscape', to: 'Rubiconnect', color: '#FF00FF' },
-        { from: 'Rubiscape', to: 'Rubistudio', color: '#FF00FF' },
-        { from: 'Rubiscape', to: 'Rubisight', color: '#FF00FF' },
-        { from: 'Rubistudio', to: 'Workflows', color: '#FF4500' },
-        { from: 'Rubistudio', to: 'Workbooks', color: '#FF4500' },
-        // { from: 'Rubicconnect', to: 'Workflows', color: '#FF4500' },
-        { from: 'Rubisight', to: 'Dashboard', color: '#0000FF' },
-        { from: 'Workflows', to: 'Models', color: '#000000' },
-        { from: 'Workbooks', to: 'Reusable Code', color: '#000000' },
-      ]);
+        { from: 'Rubiscape', to: 'Rubiconnect', color: '#FF00FF', category: 'straightLink' },
+        { from: 'Rubiscape', to: 'Rubistudio', color: '#FF00FF', category: 'orthogonalLink' },
+        { from: 'Rubiscape', to: 'Rubisight', color: '#FF00FF', category: 'straightLink' },
+        { from: 'Rubistudio', to: 'Workflows', color: '#FF4500', category: 'curvedLink' },
+        { from: 'Rubistudio', to: 'Workbooks', color: '#FF4500', category: 'curvedLink' },
+        { from: 'Rubisight', to: 'Dashboard', color: '#0000FF', category: 'orthogonalLink' },
+        { from: 'Workflows', to: 'Models', color: '#000000', category: 'straightLink' },
+        { from: 'Workbooks', to: 'Models', color: '#000000', category: 'straightLink' },
+        { from: 'Workbooks', to: 'Reusable Code', color: '#000000', category: 'orthogonalLink' },
+      ]
+    );
   }
 }
