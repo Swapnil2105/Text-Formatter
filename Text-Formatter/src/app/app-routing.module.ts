@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DatabaseEntryComponent } from './modules/database-entry/database-entry.component';
 import { APIsComponentComponent } from './modules/apis-component/apis-component.component';
 import { HighchartsComponent } from './modules/highcharts/highcharts.component';
+import { GojsComponent } from './modules/gojs/gojs.component';
 
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'database-entry', component: DatabaseEntryComponent },
   { path: 'apis-component', component: APIsComponentComponent},
-  { path: 'highcharts', component: HighchartsComponent}
+  { path: 'highcharts', component: HighchartsComponent},
+  { path: 'gojs', component: GojsComponent }
 ];
 
 @NgModule({
